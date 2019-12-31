@@ -1,0 +1,29 @@
+# https://www.reddit.com/r/learnpython/comments/1iw2c1/tutorial_massive_what_is_a_class_explain_object/
+# https://www.reddit.com/r/learnpython/comments/9uo346/good_tutorial_for_chess/
+
+
+class board():
+    def __init__(self):
+        self.squares = []
+        self.moves = []
+        self.flipped = False
+        self.whitesTurn = True
+        
+ class square():
+    def __init__(self, row, column):
+        self.row = row
+        self.column = column
+        self.lDiagonal = self.setDiagonal(row, column, 1)
+        self.rDiagonal = self.setDiagonal(row, column, 2)
+        self.piece = None
+        
+    def setDiagonal(self, rank, file, axis):
+        #add code here to derive the diagonal
+        #of a square from the rank and file
+        return None #fix this later
+    
+    def setPiece(self, piece):
+        self.piece = piece
+    
+    def emptySquare(self):
+        self.piece = None
