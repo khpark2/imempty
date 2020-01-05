@@ -2,28 +2,78 @@
 # https://www.reddit.com/r/learnpython/comments/9uo346/good_tutorial_for_chess/
 
 
-class board():
+class board:
+
     def __init__(self):
-        self.squares = []
         self.moves = []
         self.flipped = False
         self.whitesTurn = True
         
- class square():
+        self.squares = []
+        for temp in range(8): #there are 8 rows on a board
+            for temp2 in range(8): #there are 8 columns on a board
+                self.squares.append(square(temp, temp2)) #add a square where row=temp1, column=temp2
+
+        self.standard()
+		
+    def standard(self):
+        #function to setup the board with the "standard"
+        #configuration of pieces
+		
+        #go through every square we have
+        for sq in self.squares:
+			
+            #set black pawns down
+            if sq.row == 1:
+                sq.setPiece("Black", "Pawn")
+			
+            #set white pawns down
+            if sq.row == 6:
+                sq.setPiece("White", "Pawn")
+			
+            #set pieces down
+            if sq.row == 0 or sq.row == 7:
+				
+                if sq.row == 0: 
+                    col = "White"
+                if sq.row == 7: 
+                    col = "Black"
+				
+                if sq.column == 0 or sq.column == 7:
+                    sq.setPiece(col, "Rook")
+                if sq.column == 1 or sq.column == 6:
+                    sq.setPiece(col, "Knight")
+                if sq.column == 2 or sq.column == 5:
+                    sq.setPiece(col, "Bishop")
+                if sq.column == 3:
+                    sq.setPiece(col, "Queen")
+                if sq.column == 4:
+                    sq.setPiece(col, "King")
+
+            if sq.row == 2 or sq.row == 3 or sq.row == 4 or sq.row == 5:
+                sq.setPiece(None, None)
+
+    def getPiece(self, row, column):
+        for sq in self.squares:
+            if sq.row == row and sq.column == column:
+                return sq.piece
+				
+            
+class square:
+
     def __init__(self, row, column):
         self.row = row
         self.column = column
-        self.lDiagonal = self.setDiagonal(row, column, 1)
-        self.rDiagonal = self.setDiagonal(row, column, 2)
         self.piece = None
-        
-    def setDiagonal(self, rank, file, axis):
-        #add code here to derive the diagonal
-        #of a square from the rank and file
-        return None #fix this later
     
-    def setPiece(self, piece):
-        self.piece = piece
+    def setPiece(self, colour, type):
+        self.piece = piece(colour, type)
     
     def emptySquare(self):
-        self.piece = None
+        self.piece = piece(None, None)
+
+class piece:
+    
+    def __init__(self, colour, type):
+        self.colour = colour
+        self.type = type
