@@ -2,7 +2,7 @@
 # https://www.reddit.com/r/learnpython/comments/9uo346/good_tutorial_for_chess/
 
 
-class board:
+class Board(object):
 
     def __init__(self):
         self.moves = []
@@ -25,11 +25,11 @@ class board:
 			
             #set black pawns down
             if sq.row == 1:
-                sq.setPiece("Black", "Pawn")
+                sq.set_piece("Black", "Pawn")
 			
             #set white pawns down
             if sq.row == 6:
-                sq.setPiece("White", "Pawn")
+                sq.set_piece("White", "Pawn")
 			
             #set pieces down
             if sq.row == 0 or sq.row == 7:
@@ -40,40 +40,40 @@ class board:
                     col = "Black"
 				
                 if sq.column == 0 or sq.column == 7:
-                    sq.setPiece(col, "Rook")
+                    sq.set_piece(col, "Rook")
                 if sq.column == 1 or sq.column == 6:
-                    sq.setPiece(col, "Knight")
+                    sq.set_piece(col, "Knight")
                 if sq.column == 2 or sq.column == 5:
-                    sq.setPiece(col, "Bishop")
+                    sq.set_piece(col, "Bishop")
                 if sq.column == 3:
-                    sq.setPiece(col, "Queen")
+                    sq.set_piece(col, "Queen")
                 if sq.column == 4:
-                    sq.setPiece(col, "King")
+                    sq.set_piece(col, "King")
 
             if sq.row == 2 or sq.row == 3 or sq.row == 4 or sq.row == 5:
-                sq.setPiece(None, None)
+                sq.set_piece(None, None)
 
-    def getPiece(self, row, column):
+    def get_piece(self, row, column):
         for sq in self.squares:
             if sq.row == row and sq.column == column:
                 return sq.piece
 				
             
-class square:
+class Square(object):
 
     def __init__(self, row, column):
         self.row = row
         self.column = column
         self.piece = None
     
-    def setPiece(self, colour, type):
-        self.piece = piece(colour, type)
+    def set_piece(self, color, type):
+        self.piece = piece(color, type)
     
-    def emptySquare(self):
+    def empty_square(self):
         self.piece = piece(None, None)
 
-class piece:
+class Piece(object):
     
-    def __init__(self, colour, type):
-        self.colour = colour
+    def __init__(self, color, type):
+        self.color = color
         self.type = type
