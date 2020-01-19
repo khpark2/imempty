@@ -10,29 +10,30 @@ class Board(object):
         self.whitesTurn = True
         
         self.squares = []
-        for temp in range(8): #there are 8 rows on a board
-            for temp2 in range(8): #there are 8 columns on a board
-                self.squares.append(square(temp, temp2)) #add a square where row=temp1, column=temp2
+
+        for temp in range(8): # there are 8 rows on a board
+            for temp2 in range(8): # there are 8 columns on a board
+                self.squares.append(square(temp, temp2)) # add a square where row=temp1, column=temp2
 
         self.standard()
 		
     def standard(self):
-        #function to setup the board with the "standard"
-        #configuration of pieces
+        # function to setup the board with the "standard"
+        # configuration of pieces
 		
-        #go through every square we have
-        for sq in self.squares:
+
+        for sq in self.squares:  # go through every square we have
 			
-            #set black pawns down
-            if sq.row == 1:
+           
+            if sq.row == 1: # set black pawns down
                 sq.set_piece("Black", "Pawn")
 			
-            #set white pawns down
-            if sq.row == 6:
+            
+            if sq.row == 6: # set white pawns down
                 sq.set_piece("White", "Pawn")
 			
-            #set pieces down
-            if sq.row == 0 or sq.row == 7:
+            
+            if sq.row == 0 or sq.row == 7: # set pieces down
 				
                 if sq.row == 0: 
                     col = "White"
